@@ -14,19 +14,15 @@ public class ApiService {
 
     private final WebClient webClient;
 
-
     public ApiService(WebClient.Builder webClientBuilder) {
             this.webClient = webClientBuilder.baseUrl("https://randomuser.me").build();
     }
 
-    public List<Usuario> getDataFromApi(String endpoint) {
-            // Hacemos la petición GET y esperamos la respuesta como String
+    public List<Usuario> obtenerDatos(String base) {
             Mono<Resultado> response = this.webClient.get()
-                    .uri(endpoint)
+                    .uri(base)
                     .retrieve()
                     .bodyToMono(Resultado.class);
-
-            // Bloqueamos hasta obtener la respuesta (para el caso de uso síncrono)
             return response.block().getResults();
     }
 

@@ -21,9 +21,9 @@ public class ApiController {
     }
 
     @GetMapping("/miapi")
-    public String getApiData(@RequestParam(defaultValue = "10") int results, Model model) {
-        String endpoint = "/api/?results=" + results;
-        List<Usuario> usuarios = apiService.getDataFromApi(endpoint);
+    public String getApiData(@RequestParam(defaultValue = "10") int resultados, Model model) {
+        String parametros = "/api/?results=" + resultados;
+        List<Usuario> usuarios = apiService.obtenerDatos(parametros);
         model.addAttribute("usuarios", usuarios);
         return "verusuarios";
     }
