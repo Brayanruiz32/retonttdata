@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Listado de usuarios</title>
+</head>
+<body>
+    <h1>Listado de Usuarios</h1>
+    <ul>
+        <li th:each="usuario : ${usuarios}">
+            <h3 th:text="${usuario.name.title + ' ' + usuario.name.first + ' ' + usuario.name.last}"></h3>
+            <p><strong>Género:</strong> <span th:text="${usuario.gender}"></span></p>
+            <p><strong>Ubicación:</strong> <span th:text="${usuario.location.city + ', ' + usuario.location.country}"></span></p>
+            <p><strong>Correo Electrónico:</strong> <span th:text="${usuario.email}"></span></p>
+            <p><strong>Fecha de nacimiento:</strong> <span th:text="${#dates.format(usuario.dob.date, 'yyyy/MM/dd')}"></span></p>
+            <p><img th:src="${usuario.picture.large}" alt="usuario Picture"></p>
+        </li>
+    </ul>
+</body>
+</html>
